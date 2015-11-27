@@ -1,0 +1,68 @@
+.text-fly {
+    background: #FFF;
+    padding: 24px;
+    text-align: left;
+}
+.bmw-album{
+	width: 60px;
+	margin: 0 -25px;
+	font-family: "Helvetica Neue",Helvetica,Arial,FreeSans,sans-serif;
+}
+.bmw-album{
+	float: left;
+	margin: 2px;
+	position: relative;
+}
+.bmw-album > a,
+.bmw-album > a img{
+	display: block;
+	height: 41px;
+    width: 60px;
+}
+.bmw-album > a{
+	width: 60px;
+	height: 47px;
+	position: relative;
+	padding: 3px;
+	background: #faffff;
+	/*-webkit-box-shadow: 1px 1px 2px #fff, 1px 1px 2px rgba(158,111,86,0.3) inset;
+	-moz-box-shadow: 1px 1px 2px #fff, 1px 1px 2px rgba(158,111,86,0.3) inset;
+	box-shadow: 1px 1px 2px #fff, 1px 1px 2px rgba(158,111,86,0.3) inset;*/
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+.bmw-album > a span{
+	position: absolute;
+	width: 54px;
+	height: 41px;
+	top: 3px;
+	left: 3px;
+	text-align: center;
+	line-height: 15px;
+	padding: 7px 0;
+	color: rgba(27,54,81,0.8);
+	text-shadow: 0px 1px 1px rgba(255,255,255,0.6);
+	font-size: 11px;
+	font-weight: 700;
+	opacity: 0;
+	filter: alpha(opacity=0); /* internet explorer */
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=0)"; /*IE8*/
+	background: rgb(241,210,194);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%, rgba(166,176,187,1) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,255,255,0.56)), color-stop(100%,rgba(241,210,194,1)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%,rgba(166,176,187,1) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%,rgba(166,176,187,1) 100%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%,rgba(166,176,187,1) 100%);
+	background: radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%,rgba(166,176,187,1) 100%);
+	-webkit-transition: opacity 0.3s linear;
+	-moz-transition: opacity 0.3s linear;
+	-o-transition: opacity 0.3s linear;
+	-ms-transition: opacity 0.3s linear;
+	transition: opacity 0.3s linear;
+}
+.bmw-album > a:hover span{
+	opacity: 1;
+	filter: alpha(opacity=99); /* internet explorer */
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=99)"; /*IE8*/
+}

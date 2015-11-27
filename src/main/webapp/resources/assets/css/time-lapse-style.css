@@ -1,0 +1,645 @@
+
+a:hover, a:focus {
+    text-decoration: none !important;
+}
+.tl_container {
+    background-color: #fff;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+    height: auto;
+    margin: 0 auto;
+    padding: 5px;
+    position: relative;
+    width: 810px;
+}
+.tl_timer_zoom_wrap {
+    float: left;
+    position: relative;
+    width: 210px;
+}
+.tl_timer_container {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: -moz-use-text-color rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.2);
+    border-image: none;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    border-style: none solid solid;
+    border-width: medium 1px 1px;
+    float: left;
+    height: 395px;
+    margin: 0 0 10px;
+    padding: 0;
+    width: 208px;
+}
+.tl_timer_heading {
+    background: url("../img/timelapse/lt-heading-bg.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    height: 25px;
+    margin-left: -1px;
+    width: 210px;
+}
+.tl_timer_heading h3 {
+    color: #fff;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    line-height: 16px;
+    margin: 0;
+    padding: 5px 12px;
+}
+.tl_timer_wrap {
+    padding: 5px;
+    width: 208px;
+}
+.tl_timepicker_wrap {
+    padding: 5px;
+    width: 208px;
+	margin-top: 5px;
+}
+.tl_timepicker_wrap h3{
+	color: #323232;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    line-height: 16px;
+    margin: 0;
+}
+.tl_go_btn{
+	width: 100%;
+	height: 25px;
+	text-align: center;	
+	margin-top: 10px;
+}
+.form-controls {
+    border: 1px solid #ccc;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    height: 30px;
+    width: 100%;
+}
+.tl_zoom_container {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: -moz-use-text-color rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.2);
+    border-image: none;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    border-style: none solid solid;
+    border-width: medium 1px 1px;
+    float: left;
+    height: 245px;
+    padding: 0;
+    width: 208px;
+}
+.tl_zoom_heading {
+    background: url("../img/timelapse/lt-heading-bg.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    height: 25px;
+    margin-left: -1px;
+    width: 210px;
+}
+.tl_zoom_heading h3 {
+    color: #fff;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    line-height: 16px;
+    margin: 0;
+    padding: 5px 12px;
+}
+.tl_zoom_wrap {
+    padding: 5px;
+    width: 208px;
+}
+.tl-pan {
+    float: left;
+    padding: 1px;
+    position: relative;
+    width: 100px;
+}
+.ui-control {
+    font: bold 12px/28px Helvetica,sans-serif;
+    left: 10px;
+    position: absolute;
+    text-align: center;
+    top: 10px;
+    z-index: 1000;
+}
+.ui-pan {
+    display: inline-block;
+    float: left;
+    height: 80px;
+    margin-bottom: 10px;
+    margin-left: 1px;
+    position: relative;
+    width: 95px;
+}
+.ui-pan .panner {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 3px;
+    color: #404040;
+    font-size: 13px;
+    height: 25px;
+    left: 0;
+    padding: 4px 5px;
+    position: absolute;
+    top: 0;
+    width: 25px;
+}
+.ui-pan .panner:hover {
+    color: #404040;
+}
+.ui-pan .panner.up {
+    left: 27px;
+}
+.ui-pan .panner.right {
+    left: 53px;
+    top: 24px;
+}
+.ui-pan .panner.down {
+    left: 27px;
+    top: 48px;
+}
+.ui-pan .panner.left {
+    left: 1px;
+    top: 24px;
+}
+.tl_pz_img_bg {
+    background-color: #404040;
+    float: left;
+    height: 75px;
+    margin-bottom: 5px;
+    margin-left: 1px;
+    width: 85px;
+	padding:5px;
+}
+.tl_pz_img{
+	width: 75px;
+	height: 65px;
+	background-color: #fff;
+}
+.tl_pz_text_caption {
+    color: #404040;
+    float: left;
+    font-family: open sans;
+    font-size: 10px;
+    margin-top: 7px;
+    text-align: center;
+    width: 100%;
+}
+.tl-zoom {
+    float: left;
+    padding: 7px;
+    position: relative;
+    text-align: center;
+    width: 85px;
+}
+.ui-zoom {
+    display: block;
+    height: 80px;
+    margin-bottom: 10px;
+    margin-left: 1px;
+    position: absolute;
+    width: auto;
+}
+.ui-zoom .zoomer {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 3px;
+    color: #404040;
+    font-size: 17px;
+    font-weight: 900;
+    height: 25px;
+    left: 0;
+    padding: 4px 5px;
+    position: absolute;
+    top: 0;
+    width: 25px;
+}
+.ui-zoom .zoomer:hover {
+    color: #404040;
+}
+.ui-zoom .zoomer.up {
+    left: 27px;
+    top: 0;
+}
+.ui-zoom .zoomer.center {
+    height: 10px;
+    left: 27px;
+    top: 30px;
+}
+.ui-zoom .zoomer.down {
+    left: 27px;
+    top: 130px;
+}
+.tl_camra_wrap {
+    width: auto;
+}
+.tl_screen_heading {
+    background-color: #323232;
+    color: #fff;
+    font-size: 15px;
+    height: 29px;
+    padding: 4px 6px;
+    width: 100%;
+}
+.tl_screem_window {
+    background-color: #ccc;
+    height: 600px;
+    position: relative;
+    width: 800px;
+}
+.tl_control_btns {
+    background: linear-gradient(to bottom, #fff 0%, #e6e6e6 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 0 #ffffff inset;
+    height: auto;
+    padding: 4px;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    width: 100%;
+}
+.ui-controller {
+    float: left;
+}
+.ui-controller .controlbtn {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    color: #404040;
+    font-size: 13px;
+    font-weight: normal;
+    height: 27px;
+    left: 0;
+    padding: 4px 10px;
+    position: relative;
+    top: 0;
+    width: 70px;
+}
+.ui-controller .controlbtn:hover {
+    color: #404040;
+}
+.ui-controller .controlbtn.play {
+    left: 0;
+    top: 0;
+}
+.ui-controller .controlbtn.stop {
+    left: -4px;
+    top: 0;
+}
+.ui-controller .controlbtn.backward {
+    left: 4px;
+    top: 0;
+}
+.ui-controller .controlbtn.prev {
+    left: 0px;
+    top: 0;
+}
+.ui-controller .controlbtn.next {
+    left: -4px;
+    top: 0;
+}
+.ui-controller .controlbtn.forward {
+    left: -8px;
+    top: 0;
+}
+.tl_speed_wrap {
+    float: right;
+	margin: 5px 0 0;
+}
+.tl_speed_text {
+    color: #404040;
+    float: right;
+    font-family: open sans;
+    font-size: 14px;
+    font-weight: 500;
+    margin-right: 12px;
+    margin-top: 0;
+    text-align: left;
+    width: auto;
+}
+.tl_speed_controll {
+    float: left;
+    width: 100px;
+}
+.tl_control_time_wrap {
+    background: none repeat scroll 0 0 #e6e6e6;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 0 0 #ffffff inset;
+    height: auto;
+    padding: 5px 15px;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    width: 100%;
+}
+.tl_date_wrap{
+	border-right: 1px solid #fff;
+    float: left;
+    margin: 6px 15px 0 0;
+    padding: 0 15px 0 0;
+    width: 20%;
+}
+.tl_date_wrap h3{
+	margin:0 0 17px;
+	font-size: 15px;
+}
+.tl_date_wrap .from{
+	float: left;
+    margin: 0 8px 5px 4px;
+    width: 45%;
+}
+
+.tl_time_wrap{
+	float: left;
+    margin: 6px 0 0;
+    width: 45%;
+}
+.tl_time_wrap h3{
+	margin:0;
+	font-size: 15px;
+}
+.tl_time_wrap .from{
+	float: left;
+    margin: 0 8px 5px 2px;
+    width: 45%;
+	font-size: 13px;
+}
+.tl_time_wrap .to{
+	float: right;
+    margin: 0 15px 5px 4px;
+    width: 45%;
+}
+.tl_intervall_wrap{
+	border-left: 1px solid #fff;
+    float: right;
+    margin: 6px 1px 2px;
+    padding: 0 0 0 11px;
+    width: 15%;
+}
+.tl_intervall_wrap h3{
+	margin:0 0 10px;
+}
+.tl_intervall_wrap .selection{
+	float: left;
+    margin: 0 8px 5px 4px;
+    width: 45%;
+}
+.tl_ct_wrap {
+    background-color: #fff;
+    float: left;
+    height: 10px;
+    margin: 6px 0 0;
+    width: 95.5%;
+}
+.ui-ctime .ctimelbtn {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    color: #323232;
+    font-size: 16px;
+    font-weight: normal;
+    height: 22px;
+    left: 0;
+    padding: 2px 6px;
+    position: relative;
+    top: 0;
+    width: 22px;
+}
+.ui-ctime .ctimelbtn:hover {
+    color: #404040;
+}
+.ui-ctime .ctimelbtn.left {
+    float: left;
+    left: 0;
+    top: 0;
+}
+.ui-ctime .ctimelbtn.right {
+    float: right;
+    left: 0;
+    top: 0;
+}
+.tl_control_hours_wrap {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+	border-top: none;
+    box-shadow: 0 0 1px #ffffff inset;
+    height: auto;
+    margin-top: -4px;
+    padding: 10px 5px 6px;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    width: 100%;
+}
+.tl_controlhours {
+    float: left;
+    margin-bottom: 10px;
+    width: 100%;
+}
+.tl_chours_wrap {
+    background-color: #e6e6e6;
+    float: left;
+    height: 10px;
+    margin: 6px 0 0;
+    width: 95.5%;
+}
+.ui-chours .choursbtn {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    color: #323232;
+    font-size: 16px;
+    font-weight: normal;
+    height: 22px;
+    left: 0;
+    padding: 2px 6px;
+    position: relative;
+    top: 0;
+    width: 22px;
+}
+.ui-chours .choursbtn:hover {
+    color: #404040;
+}
+.ui-chours .choursbtn.left {
+    float: left;
+    left: 0;
+    top: 0;
+}
+.ui-chours .choursbtn.right {
+    float: right;
+    left: 0;
+    top: 0;
+}
+.tl_datetime_wrap{
+	color: #323232;
+    float: left;
+    font-size: 15px;
+    font-weight: normal;
+    padding-top: 0;
+    text-align: center;
+    width: auto;
+}
+.tl_hours_btns{
+	float:right;
+	width: auto;
+	height: 25px;
+}
+
+aside {
+  margin: 0 15px 0 0;
+  line-height: 28px;
+  position: relative;
+  cursor: pointer;
+  float: left;
+  user-select: none;
+}
+aside:hover {
+  top: -1px;
+}
+aside:active {
+  top: 1px;
+}
+aside.sheer {
+  background: #e6e6e6; /* Old browsers */
+  background: -moz-linear-gradient(top,  #fff 0%, #e6e6e6 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff), color-stop(100%,#e6e6e6)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #fff 0%,#e6e6e6 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #fff 0%,#e6e6e6 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #fff 0%,#e6e6e6 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #fff 0%,#e6e6e6 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff', endColorstr='#e6e6e6',GradientType=0 ); /* IE6-9 */
+  left: 0;
+  padding: 0 8px;
+  text-align: center;
+  width: auto;
+}
+aside.sheer:after, aside.sheer:before {
+  border-width: 28px 15px 0 0;
+}
+aside.sheer:before {
+  left: 0px;
+  border-color: transparent;
+}
+aside.sheer:after {
+  right: -15px;
+  border-color: #eeeeee transparent;
+}
+
+aside:before, aside:after {
+  content: '';
+  position: absolute;
+  height: 0;
+  width: 0;
+  border-style: solid;
+  border-width: 0;
+}
+.btn-t {
+	background: #f1f1f1; /* Old browsers */
+	background: -moz-linear-gradient(top, #ffffff 100%, #e6e6e6 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(100%,#ffffff), color-stop(100%,#e6e6e6)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 100%,#e6e6e6 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 100%,#e6e6e6 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 100%,#e6e6e6 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ffffff 100%,#e6e6e6 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1f1f1', endColorstr='#e6e6e6',GradientType=0 ); /* IE6-9 */
+    background-image: linear-gradient(to bottom, #fff, #e6e6e6);
+    background-repeat: repeat-x;
+    border-color: #bbb #bbb #a2a2a2;
+    border-image: none;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    color: #333;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+    line-height: 16px;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding: 4px 14px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+}
+.btn-t {
+    border-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.25);
+}
+.btn-t:hover, .btn-t:active, .btn-t.active, .btn-t.disabled, .btn-t[disabled] {
+    background-color: #e6e6e6;
+    color: #333;
+}
+.btn-t.disabled, .btn-t[disabled] {
+    background-color: #e8e8e8;
+    color: black;
+    text-shadow: 1px 1px 0 white;
+}
+.btn-t.done {
+    background: none repeat scroll 0 0 #fff398;
+    color: black;
+}
+.btn-t:active, .btn-t.active {
+}
+.btn-t:first-child {
+}
+.btn-group > .btn-t{
+    border-radius: 0;
+    position: relative;
+}
+.btn-group > .btn-t + .btn-t {
+    margin-left: -3px;
+}
+.btn-group > .btn-t, .btn-group > .dropdown-menu {
+    font-size: 13px;
+}
+.btn-group > .btn-t:first-child {
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+    margin-left: 0;
+}
+.btn-group > .btn-t:last-child, .btn-group > .dropdown-toggle {
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+.btn-group > .btn-t.large:first-child {
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
+    margin-left: 0;
+}
+.btn-group > .btn-t.large:last-child, .btn-group > .large.dropdown-toggle {
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+}
+.btn-t:hover {
+    background-color: #e6e6e6;
+    background-position: 0 -15px;
+    color: #333;
+    text-decoration: none;
+}
+.btn-t:focus {
+    outline: thin dotted #333;
+    outline-offset: -2px;
+}
+.btn-t.active, .btn-t:active {
+    background-color: #e6e6e6;
+    background-image: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    outline: 0 none;
+}
+.btn-t.disabled, .btn-t[disabled] {
+    background-color: #e6e6e6;
+    background-image: none;
+    box-shadow: none;
+    cursor: default;
+    opacity: 0.4;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .tl_date_wrap{
+    width: 20%;
+  }
+  .tl_time_wrap {
+    width: 30%;
+  }
+  .tl_time_wrap .from {
+    float: left;
+    width: 40%;
+  }
+  .tl_time_wrap .to {
+    float: left;
+    width: 40%;
+  }
+  .tl_intervall_wrap {
+    width: 15%;
+  }
+	
+}

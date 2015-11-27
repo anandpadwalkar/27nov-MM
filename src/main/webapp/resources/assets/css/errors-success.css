@@ -1,0 +1,113 @@
+.upload_success, .success_msg, .flash_notice, .flash_errors, .mango-message, .mango-info, .error_status {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+    color: #fff;
+    display: none;
+	font-family: PNR;
+    font-size: 15px;
+    font-weight: bold;
+    left: 50%;
+    margin: 0 0 0 -379px !important;
+    max-width: 700px;
+    min-width: 700px;
+    padding: 10px 20px 10px 46px;
+    position: fixed;
+    text-align: left;
+    top: 0;
+    z-index: 9999;
+}
+.mango-info {
+    background-color: #eedc94;
+    background-image: -moz-linear-gradient(center top , #fceec1, #eedc94);
+    background-repeat: repeat-x;
+    border-color: #eedc94 #eedc94 #e4c652;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.mango-message {
+    background-color: #339bb9;
+    background-image: -moz-linear-gradient(center top , #5bc0de, #339bb9);
+    background-repeat: repeat-x;
+    border-color: #339bb9 #339bb9 #22697d;
+}
+.flash_errors, .error_status {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: url("../img/icons/error_icon.png") no-repeat scroll 10px 9px #ea5d4f !important;
+    border-color: -moz-use-text-color #a12114 #a12114;
+    border-image: none;
+    border-right: 1px solid #a12114;
+    border-style: none solid solid;
+    border-width: 0 1px 1px;
+    text-shadow: 0 1px 1px rgba(115, 30, 20, 0.75);
+}
+.site-pages .flash_notice, .site-pages .upload_success, .site-pages .success_msg, .site-pages .error_status {
+    margin-top: 4px !important;
+    z-index: 32 !important;
+}
+.flash_notice, .upload_success, .success_msg {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: url("../img/icons/success_icon.png") no-repeat scroll 10px 9px #038cd7 !important;
+    border-color: -moz-use-text-color rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.25);
+    border-image: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.25);
+    border-style: none solid solid;
+    border-width: 0 1px 1px;
+    text-shadow: 0 1px 1px rgba(22, 116, 138, 0.75);
+}
+.theme_class .upload_success a, .theme_class .success_msg a, .theme_class .flash_errors a, .theme_class .flash_notice a, .theme_class .mango-message a, .theme_class .upload_success a:hover, .theme_class .success_msg a:hover, .theme_class .flash_errors a:hover, .theme_class .flash_notice a:hover, .theme_class .mango-message a:hover, .error_status a.close {
+    color: #fff;
+    text-decoration: underline;
+}
+.upload_success a.close, .success_msg a.close, .flash_notice a.close, .flash_errors a.close, .mango-message a.close, .mango-info a.close, .error_status a.close {
+    background: none repeat scroll 0 0 #fff;
+    border-radius: 0 0 0 5px;
+    color: #fff;
+    cursor: pointer;
+    float: right;
+    font-size: 14px;
+    font-weight: bold;
+    height: 20px;
+    line-height: 17px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: none;
+    top: 0;
+    width: 20px;
+}
+.error_status .flash-error-ico, .flash-error-ico, .flash-error-ico {
+    background: url("../img/icons/error_icon.png") no-repeat scroll 10px 9px #ea5d4f !important;
+    float: left;
+    height: 39px;
+    left: 0;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    width: 39px;
+}
+.flash_notice .icon-check-flash, .icon-check-flash {
+    background: url("../img/icons/error_icon.png") no-repeat scroll 10px 9px #ea5d4f !important;
+    display: block;
+    float: left;
+    height: 34px;
+    left: 0;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    width: 43px;
+}
+.non-logged-in .error_status a.close {
+    color: #a12114;
+}
+.non-logged-in .flash_notice a.close {
+    color: #038cd7;
+}
+.flash_notice a.close, .error_status a.close {
+    color: #219dba;
+    display: block;
+}

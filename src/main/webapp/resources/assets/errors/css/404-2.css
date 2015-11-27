@@ -1,0 +1,16 @@
+/* Template Style - 2 // 
+
+Just take the color & replace on main CSS file from body and canvas. 
+No need to link two stylesheets. 
+
+*/ 
+
+body {
+    background: #1F253D; 
+ }
+
+/* Canvas Style */
+
+canvas {
+    background: #1F253D;               
+  }

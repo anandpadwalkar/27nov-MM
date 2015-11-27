@@ -1,0 +1,26 @@
+/* Template Style - 4 // 
+
+Just take the color & replace on main CSS file from body and canvas. 
+No need to link two stylesheets. 
+
+*/ 
+
+body {
+    background: #ba0e0e; 
+ }
+
+/* Canvas Style */
+
+canvas {
+    background: #ba0e0e;               
+  }
+
+.not-found{
+
+    color: #f39c12;
+
+
+}
+.not-found h1 span{
+    color:#fff; 
+}
