@@ -121,8 +121,9 @@ display:inline;
 <script type="text/javascript">
 	var contextPath = "${pageContext.request.contextPath}";
 		$(document).ready(function(){
-			$(".module-link").click(function(){
-				//alert($(this).attr('for'));
+			$(".module-link").click(function(e){
+				e.preventDefault();
+				alert($(this).attr('for'));
 				$("#navbar-collapse-1").empty();
 				$.ajax({
 					async: false,
@@ -196,6 +197,9 @@ var array= new Array();
     		}
     	});
 	}
+    
+
+
 </script>
 
 
@@ -264,6 +268,22 @@ var array = new  Array();
     		$("[type='checkbox']").removeAttr("checked");
     	});
     	
+    	
+
+        var check_flag="true";
+        $('#my_switch_button').click(function(){
+       	
+       	 if(check_flag=='true'){
+       	 jQuery('#project-switcher').addClass('container project-switcher open');
+       	 jQuery('#project-switcher').css('display','block');
+       	 check_flag="false";
+             }else{
+       	 jQuery('#project-switcher').removeClass('open');
+       	 jQuery('#project-switcher').css('display','none');
+       	 check_flag="true";
+        }
+        });
+    	
     });
 </script>
 	</head>
@@ -292,7 +312,8 @@ var array = new  Array();
 <div class="row">
                 <div class="col-md-12">
                     <fieldset class="scheduler-border">
-                        <legend class="scheduler-border">Role Allocation</legend>
+				<!-- <legend class="scheduler-border">Role Allocation</legend>-->
+                          <div class="grid-header text">Role Allocation </div>
 
                         <div class="form-group">
                             <div class="col-sm-12 ">Note <b>:</b> <span style="color: #FF0000">* Marked Is Mandatory !</span></div>
@@ -317,11 +338,11 @@ var array = new  Array();
                                              
 															<button type="submit" 
 																class="btn btn-xl btn-success button-submit font13"
-																id="submit">Submit</button>
+																id="submit">Add</button>
 													
 															<button type="reset"
-																class="btn btn-xl btn-success button-submit font13"
-																data-dismiss="modal">Reset</button>
+																class="btn btn-xl btn-default button-submit font13"
+																data-dismiss="modal">Cancel</button>
 													
                                     </div>
                                 </div>

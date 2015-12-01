@@ -9,12 +9,14 @@
 
 <security:http auto-config="true" use-expressions="true" >
 		<security:intercept-url pattern="/resources/**" access="permitAll()" />
-		<security:intercept-url pattern="/login" access="permitAll()"  />
+		<security:intercept-url pattern="/forgetPassword/**" access="permitAll()"/>
+		<security:intercept-url pattern="/login/**" access="permitAll()"  />
 		<security:intercept-url pattern="/**" access="isAuthenticated()" />
+		
 		<security:form-login login-page="/login"  username-parameter="username" password-parameter="password" authentication-success-handler-ref="authenticationSuccessHandler" authentication-failure-handler-ref="authenticationSuccessHandler"/>
 		<security:logout logout-success-url="/" delete-cookies="JSESSIONID" invalidate-session="true"/>
 		<security:session-management invalid-session-url="/invalid-session" session-authentication-error-url="/invalid-session" >
-			<security:concurrency-control max-sessions="10" error-if-maximum-exceeded="true" expired-url="/invalid-session"/>
+			<security:concurrency-control max-sessions="1" error-if-maximum-exceeded="true" expired-url="/invalid-session"/>
 		</security:session-management>
 		
 		<security:headers>

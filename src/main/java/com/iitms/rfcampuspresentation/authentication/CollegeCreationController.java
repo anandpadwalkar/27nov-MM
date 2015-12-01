@@ -34,31 +34,41 @@ import com.iitms.rfcampusdomain.authentication.service.UniversityAndBoardService
 @Controller
 public class CollegeCreationController {
 
-    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+    private static final Logger logger = LoggerFactory.getLogger(CollegeCreationController.class);
 
     @Autowired
     private CollegeCreationService collegeCreationService;
+
     @Autowired
     private SocietyCreationService societyCreationService;
+
     @Autowired
     private UniversityAndBoardService universityAndBoardService;
+
     @Autowired
     private ModuleService moduleService;
+
     @Autowired
     private FileUploadUtil fileUploadUtil;
+
     @Autowired
     private SessionUser sessionUser;
-    
+
     @RequestMapping(value = "/college", method = RequestMethod.GET)
     public ModelAndView getColleges(ModelMap model) {
         ModelAndView modelAndView = new ModelAndView("college-creation");
         List<CollegeMasterEntity> collegeList = collegeCreationService.getCollegeList();
-        List<ModuleMasterEntity> moduleList = moduleService.listAuthorisedModule(sessionUser.getCustomLoginUser().getAllocatedRoleIds());
+        List<ModuleMasterEntity> moduleList =
+            moduleService.listAuthorisedModule(sessionUser.getCustomLoginUser().getAllocatedRoleIds());
+        List<ModuleMasterEntity> allModuleList = moduleService.listAllModule();
         List<SocietyMaster> societyList = societyCreationService.getAllSociety();
-        List<UniversityMaster> universityList  =  universityAndBoardService.getAllUniversity();
+        List<UniversityMaster> universityList = universityAndBoardService.getAllUniversity();
         model.addAttribute("collegeList", collegeList);
         model.addAttribute("societyList", societyList);
         model.addAttribute("moduleList", moduleList);
+
+        model.addAttribute("allModuleList", allModuleList);
+
         model.addAttribute("universityList", universityList);
         return modelAndView;
     }
@@ -78,14 +88,13 @@ public class CollegeCreationController {
         @RequestParam(name = "collegeLogo") MultipartFile collegeLogo, HttpServletRequest request) {
         logger.info("Entity : " + entity + " - Multipart : " + collegeLogo.getOriginalFilename());
         String fileName = fileUploadUtil.uploadFile(request, collegeLogo, entity.getOldCollegeLogo(), "college");
-        if(fileName != null){
+        if (fileName != null) {
             entity.setCollegeLogo(fileName);
-           // deleteFile(entity.getOldCollegeLogo());
-        }
-        else{
+            // deleteFile(entity.getOldCollegeLogo());
+        } else {
             entity.setCollegeLogo(entity.getOldCollegeLogo());
         }
-            
+
         collegeCreationService.updateCollege(entity);
         return "redirect:/college";
     }
@@ -97,7 +106,8 @@ public class CollegeCreationController {
     }
 
     @RequestMapping(value = "/college/by-society", method = RequestMethod.POST)
-    public @ResponseBody List<CollegeMasterEntity> getCollegeBySociety(@RequestParam(value = "society-id") int societyId) {
+    public @ResponseBody List<CollegeMasterEntity> getCollegeBySociety(
+        @RequestParam(value = "society-id") int societyId) {
         List<CollegeMasterEntity> list = collegeCreationService.getCollegeBySociety(societyId);
         return list;
     }

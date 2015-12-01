@@ -29,7 +29,7 @@
     <!-- /Sidebar Toggler --> 
     
     <!-- Top Left Menu -->
-    <ul class="nav navbar-nav navbar-left">
+    <ul class="nav navbar-nav navbar-left" id="my_switch_button">
           <!-- Project Switcher Button -->
           <li class="dropdown"> <a href="#" class="project-switcher-btn dropdown-toggle"> <i class="icon-reorder fontsize_24"></i> </a> </li>
         </ul>

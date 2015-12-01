@@ -1,5 +1,6 @@
 package com.iitms.rfcampuspresentation.authentication;
 
+import java.util.HashSet;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iitms.rfcampuscommon.FileUploadUtil;
 import com.iitms.rfcampusdata.authentication.entity.ModuleMasterEntity;
 import com.iitms.rfcampusdata.authentication.entity.RoleMasterEntity;
 import com.iitms.rfcampusdata.authentication.entity.SessionUser;
@@ -29,7 +31,7 @@ import com.iitms.rfcampusdomain.authentication.service.UserCreationService;
 @Controller
 public class UserCreationController {
 
-    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserCreationController.class);
 
     @Autowired
     private UserCreationService userCreationService;
@@ -43,6 +45,9 @@ public class UserCreationController {
     @Autowired
     private RoleCreationService roleCreationService;
 
+    @Autowired
+    private FileUploadUtil fileUploadUtil;
+    
     @RequestMapping(value = "/user-creation", method = RequestMethod.GET)
     public ModelAndView getUser() {
         ModelAndView modelAndView = new ModelAndView("user-creation");
@@ -59,6 +64,8 @@ public class UserCreationController {
     public String addUser(@ModelAttribute UserMasterEntity entity, BindingResult result,
         @RequestParam(name = "userImage") MultipartFile userImage, HttpServletRequest request) {
         logger.info("AddUser User : " + entity);
+        String fileName = fileUploadUtil.uploadFile(request, userImage, entity.getOldUserPhoto(), "user");
+        entity.setUserPhoto(fileName);
         userCreationService.addUser(entity);
         return "redirect:/user-creation";
     }
@@ -67,6 +74,13 @@ public class UserCreationController {
     public String updateUser(@ModelAttribute UserMasterEntity entity, BindingResult result,
         @RequestParam(name = "userImage") MultipartFile userImage, HttpServletRequest request) {
         logger.info("Update User : " + entity);
+        String fileName = fileUploadUtil.uploadFile(request, userImage, entity.getOldUserPhoto(), "user");
+        if(fileName != null){
+            entity.setUserPhoto(fileName);
+        }
+        else{
+            entity.setUserPhoto(entity.getOldUserPhoto());
+        }
         userCreationService.updateUser(entity);
         return "redirect:/user-creation";
     }
@@ -82,7 +96,9 @@ public class UserCreationController {
     @RequestMapping(value = "/user-creation/{user-id}", method = RequestMethod.POST)
     public @ResponseBody UserMasterEntity getUserInformation(@PathVariable("user-id") int userId){
         logger.info("GetUserInformation - userId : "+userId);
-        return userCreationService.getUserInformation(userId);
+        UserMasterEntity userInfo = userCreationService.getUserInformation(userId);
+        userInfo.setRoleMasterEntityList(new HashSet<RoleMasterEntity>());
+        return userInfo;
         
     }
 }

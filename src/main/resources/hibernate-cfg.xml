@@ -20,6 +20,8 @@
 		<mapping class="com.iitms.rfcampusdata.authentication.entity.RoleMasterEntity" />
 		<mapping class="com.iitms.rfcampusdata.authentication.entity.AddressMaster" />
 		<mapping class="com.iitms.rfcampusdata.authentication.entity.CollegeModuleMasterEntity" />
+		<mapping class="com.iitms.rfcampusdata.authentication.entity.UserRoleAllocationEntity" />
+		<mapping class="com.iitms.rfcampusdata.authentication.entity.UserAttemptsEntity" />
 		
 		<!-- <mapping class="com.iitms.rfcampusdata.authentication.entity.Society" /> -->
 	</session-factory>

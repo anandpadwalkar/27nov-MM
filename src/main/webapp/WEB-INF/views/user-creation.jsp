@@ -22,60 +22,49 @@
 				//setter for college info
 				var jsonOb = JSON.parse(JSON.stringify(response));
 				//alert(jsonOb.collegeLogo);
-				$("#collegeId").val(jsonOb.collegeId);
-				$("#collegeName").val(jsonOb.collegeName);
-				$("#collegeCode").val(jsonOb.collegeCode);
-				$("#Image2").attr(
+				$("[type='radio']").removeAttr("checked");
+				
+				$("#userId").val(jsonOb.userId);
+				$("#name").val(jsonOb.name);
+				$("#username").val(jsonOb.username);
+				$("#password").val(jsonOb.password);
+				$("#password1").val(jsonOb.password);
+				$("#oldUserPhoto").val(jsonOb.userPhoto);//
+				 $("#Image2").attr(
 						'src',
-						'./resources/uploads/authorization/college/'
-								+ jsonOb.collegeLogo);
-				$("#oldCollegeLogo").val(jsonOb.collegeLogo);
-				$("#panNumber").val(jsonOb.panNumber);
-				$("#tinNumber").val(jsonOb.tinNumber);
-				$("#tanNumber").val(jsonOb.tanNumber);
-				$("#principalName").val(jsonOb.principalName);
-				$("#workOrderNumber").val(jsonOb.workOrderNumber);
-				$("#workOrderDateString").val(jsonOb.workOrderDateString);
-				$("#socialCollege").val(jsonOb.socialCollege);
-				$("#active").val(jsonOb.active);
-				$("#numberOfUsers").val(jsonOb.numberOfUsers);
-				$("#societyId").val(jsonOb.societyId);
-				$("#universityId").val(jsonOb.universityId);
+						'./resources/uploads/authorization/user/'
+								+ jsonOb.userPhoto); 
+				$("#counter").val(jsonOb.counter);
+				$("#mobileNumber").val(jsonOb.mobileNumber);
+				$("#emailid").val(jsonOb.emailid);
+
+				if (jsonOb.setWorkingDate == 1) {
+					$("#setWorkingDate").prop("checked", "checked");
+					$("#setWorkingDate").val(1);
+				} else {
+					$("#setWorkingDate").removeAttr("checked");
+					$("#setWorkingDate").val(0);
+				}
 
 				if (jsonOb.active == 1) {
 					$("#active").prop("checked", "checked");
+					$("#active").val(1);
 				} else {
 					$("#active").removeAttr("checked");
+					$("#active").val(0);
 				}
 
-				if (jsonOb.socialCollege == 1) {
-					$("#socialCollege").prop("checked", "checked");
-				} else {
-					$("#socialCollege").removeAttr("checked");
+				if(jsonOb.roleIds != null){
+					$.each(jsonOb.roleIds.split(","), function(index, roleId) {
+						$("#role-" + roleId).prop("checked", "checked");
+					});
 				}
-				//setter for Address info
-				$("#addId").val(jsonOb.addId);
-				$("#address").val(jsonOb.address);
-				$("#city").val(jsonOb.city);
-				$("#pinCode").val(jsonOb.pinCode);
-				$("#phone1").val(jsonOb.phone1);
-				$("#phone2").val(jsonOb.phone2);
-				$("#phone3").val(jsonOb.phone3);
-				$("#fax1").val(jsonOb.fax1);
-				$("#fax2").val(jsonOb.fax2);
-				$("#email1").val(jsonOb.email1);
-				$("#email2").val(jsonOb.email2);
-				$("#website").val(jsonOb.website);
-				$("#socId").val(jsonOb.socId);
-				$("#collegeIdInAddress").val(jsonOb.collegeIdInAddress);
-
-				$.each(jsonOb.modules, function(index, moduleId) {
-					$("#module-" + moduleId).prop("checked", "checked");
-				});
+				
 
 				$("form").valid();
-				$("#college-add-edit-form").prop("action", "./college/update");
+				$("#user-add-edit-form").prop("action", "./user-creation/update");
 				$("#add-update-btn").val('Update');
+				$("#close-dialog-box").click();
 			},
 			error : function() {
 				alert('error...');
@@ -98,9 +87,17 @@
 		});
 	}
 
+	function resetModelDialogBox(){
+		$("#searchByUserName").prop("checked", "checked");
+		$("#searchText").val('');
+		$("#table-body").empty();
+	}
+	
 	$(document).ready(function() {
 		
 		 $("#search-btn").click(function() {
+			 $("#table-body").empty();
+			 
 			 var searchBy = $('input[name=searchBy]:checked').val();
 			 var searchText = $("#searchText").val();
 			 
@@ -113,12 +110,32 @@
 					success : function(response) {
 						//setter for college info
 						var jsonOb = JSON.parse(JSON.stringify(response));
+						var text = '';
+						
+						$.each(response, function(index, user){
+							text += "<tr class=\"customers\">"+
+							"<td style=\"width: 20%;\"><a "+
+							"id=\"ContentPlaceHolder1_lsvSearchResult_lnkRecpt_0\" "+
+							"href=\"javascript:getUserInformation("+user.userId+")\">"+user.userId+"</a>"+
+							"</td>"+
+							"<td style=\"width: 40%;\"><a "+
+							"id=\"ContentPlaceHolder1_lsvSearchResult_lnkName_0\""+
+							"href=\"javascript:getUserInformation("+user.userId+")\">"+user.name+"</a>"+
+							"</td>"+
+							"<td style=\"width: 40%;\"><a "+
+							"id=\"ContentPlaceHolder1_lsvSearchResult_lnkId_0\""+
+							"href=\"javascript:getUserInformation("+user.userId+")\">"+user.username+"</a>"+
+							"</td>"+
+							"</tr>";
+						});
+						
+						$("#table-body").empty().html(text);
 						//alert(jsonOb.collegeLogo);
 						/* $("#collegeId").val(jsonOb.collegeId);
 						$("#collegeName").val(jsonOb.collegeName);
 						$("#collegeCode").val(jsonOb.collegeCode); */
 						
-						alert(response);
+						//alert(JSON.stringify(response));
 					},
 					error : function() {
 						alert('error...');
@@ -126,7 +143,15 @@
 				});
 		}); 
 		
+		 $("#reset-dialog").click(function(){
+			 $("#table-body").empty();
+		 });
+		 
 		$("#reset").click(function() {
+		//	alert('click');
+			$("#Image2").attr(
+					'src',
+					'./resources/No_image_available.svg');
 			$("#user-add-edit-form").prop("action", "./user-creation/add");
 			$("#add-update-btn").val('Add');
 
@@ -140,7 +165,7 @@
 		});
 
 		jQuery.validator.addMethod('selectcheck', function(value) {
-			return (value != '0');
+			return (value == $("#password").val());
 		}, "");
 
 		$("#user-add-edit-form").validate({
@@ -151,39 +176,54 @@
 				//,
 				},
 				username : {
-					required : true
+					required : true,
+					nowhitespace:true
 				//,
 				},
-				password : {
+				/* password : {
 					required : true
 				//,
 				},
 				password1 : {
-					required : true
+					required : true,
+					selectcheck:true
+				//,
+				}, */
+				emailid : {
+					required : true,
+					email: true
 				//,
 				},
-				emailid : {
-					required : true
-				//,
+				mobileNumber : {
+					required : false,
+					number: true,
+					maxlength:10
+				},
+				counter : {
+					required : false,
+					number: true
 				}
 			},
 
 			// Specify the validation error messages
 			messages : {
 				name : {
-					required : "Please select Society"
+					required : "Please Enter Name"
 				},
 				username : {
-					required : "Please select University"
+					required : "Please User Name",
+					nowhitespace:"User Name should not have any spaces"
 				},
-				password : {
-					required : "Please Enter College Name"//,
+				/* password : {
+					required : "Please Enter Password"//,
 				},
 				password1 : {
-					required : "Please Enter College Code"//,
-				},
-				emailid : {
-					required : "Please Enter PAN Number"//,
+					required : "Please Re Enter Password",
+					selectcheck:"Entered Password Dosent Match"
+				}, */
+				mobileNumber : {
+					number: "Please Enter Valid Mobile Number",
+					maxlength:"Please Enter 10 Digit Mobile Number"
 				}
 			},
 
@@ -206,19 +246,22 @@
 				<!--=== Page Header ===-->
 				<jsp:include page="page-header.jsp" />
 				<!-- /Page Header -->
+				
+				
 				<form action="./user-creation/add" method="post"
 					id="user-add-edit-form" enctype="multipart/form-data">
 					<input type="hidden" name="userId" id="userId" value="0">
+					<input type="hidden" name="oldUserPhoto" id="oldUserPhoto" value="0">
 					<div
-						class="second-column one-child-container relative padding-top-75px">
+						class="second-column one-child-container relative ">
 
 
 						<div id="my_documents_container"
 							style="margin-left: 0px; margin: auto; width: 90%"
 							class="column-one clearfixs">
 							<div class="">
-
-								<!--             jaskirat code start here -->
+							
+<div class="grid-header text">User Master</div>
 
 								<div class="row">
 									<div class="col-md-12">
@@ -245,20 +288,20 @@
 																			<tbody>
 																				<tr>
 																					<td><input
-																						id="ContentPlaceHolder1_rblSearchBy_0"
+																						id="searchByUserName"
 																						type="radio"
 																						name="searchBy"
 																						value="1" checked="checked"><label
 																						for="ContentPlaceHolder1_rblSearchBy_0">USER
 																							NAME</label></td>
 																					<td><input
-																						id="ContentPlaceHolder1_rblSearchBy_1"
+																						id="searchByUserId"
 																						type="radio"
 																						name="searchBy"
 																						value="2"><label
 																						for="ContentPlaceHolder1_rblSearchBy_1">USERID</label></td>
 																					<td><input
-																						id="ContentPlaceHolder1_rblSearchBy_2"
+																						id="searchByLoginId"
 																						type="radio"
 																						name="searchBy"
 																						value="3"><label
@@ -286,7 +329,7 @@
 																			class="btn btn-default"> <input type="button"
 																			name="cancel"
 																			value="Cancel"
-																			id="cancel-btn"
+																			id="reset-dialog"
 																			class="btn btn-default">
 																	</div>
 																</div>
@@ -312,20 +355,7 @@
 																						<tbody id="table-body">
 
 
-																							<tr class="customers">
-																								<td style="width: 20%;"><a
-																									id="ContentPlaceHolder1_lsvSearchResult_lnkRecpt_0"
-																									href="javascript:getUserInformation()">38</a>
-																								</td>
-																								<td style="width: 40%;"><a
-																									id="ContentPlaceHolder1_lsvSearchResult_lnkName_0"
-																									href="javascript:getUserInformation()">ADMIN</a>
-																								</td>
-																								<td style="width: 40%;"><a
-																									id="ContentPlaceHolder1_lsvSearchResult_lnkId_0"
-																									href="javascript:getUserInformation()">ADMIN150001@RSML.COM</a>
-																								</td>
-																							</tr>
+																							
 
 
 																							
@@ -348,9 +378,9 @@
 													</div>
 													<div class="modal-footer" style="margin: 0">
 														<button type="button" class="btn btn-default"
-															data-dismiss="modal">Close</button>
-														<button type="button" class="btn btn-primary">Save
-															changes</button>
+															data-dismiss="modal" id="close-dialog-box">Close</button>
+														<!-- <button type="button" class="btn btn-primary">Save
+															changes</button> -->
 													</div>
 												</div>
 												<!-- /.modal-content -->
@@ -382,7 +412,7 @@
 																<span id="name" style="display: none;"></span> <span
 																	class="input-group-addon"><i><a
 																		href="#myModal" data-backdrop="false"
-																		data-toggle="modal"> <span
+																		data-toggle="modal" onclick="resetModelDialogBox()"> <span
 																			class="glyphicon glyphicon-search"></span>
 																	</a></i></span>
 															</div>
@@ -398,19 +428,14 @@
 																title="Please Select Photo">
 
 														</div>
-														<div class="col-sm-4">
-															<input type="submit"
-																name="ctl00$ContentPlaceHolder1$btnUpload"
-																value="Upload" id="ContentPlaceHolder1_btnUpload"
-																class="btn btn-default">
-														</div>
+														
 													</div>
 													<div class="form-group">
 														<div class="col-sm-4"></div>
 														<div class="col-sm-8">
 
-															<img id="ContentPlaceHolder1_Image2"
-																src="../images/nophoto.jpg"
+															<img id="Image2"
+																src="./resources/No_image_available.svg"
 																style="height: 75px; width: 75px;">
 														</div>
 													</div>
@@ -438,7 +463,7 @@
 															Password <span style="color: #FF0000; font-weight: bold">*</span>
 														</div>
 														<div class="col-sm-8">
-															<input name="password" type="password" maxlength="10"
+															<input name="password" type="password" maxlength="10" disabled="disabled"
 																id="password" class="form-control"
 																placeholder="Enter Password For New User"> <span
 																id="ContentPlaceHolder1_rfPassword"
@@ -451,7 +476,7 @@
 																style="color: #FF0000; font-weight: bold">*</span>
 														</div>
 														<div class="col-sm-8">
-															<input name="password1" type="password" maxlength="10"
+															<input name="password1" type="password" maxlength="10" disabled="disabled"
 																id="password1" class="form-control"
 																placeholder="Confirm Password For New User">
 														</div>
@@ -471,16 +496,16 @@
 														<div class="col-sm-4">Change Working Date</div>
 														<div class="col-sm-8">
 															<input id="setWorkingDate" type="checkbox"
-																name="setWorkingDate"><label
-																for="ContentPlaceHolder1_chkWorkingDate" class="setWorkingDate_n_statuc">Check
+																name="setWorkingDate" class="setWorkingDate_n_statuc" value="0"><label
+																for="ContentPlaceHolder1_chkWorkingDate" >Check
 																If Allow</label>
 														</div>
 													</div>
 													<div class="form-group">
 														<div class="col-sm-4">Status</div>
 														<div class="col-sm-8">
-															<input id="active" type="checkbox" name="active"><label
-																for="ContentPlaceHolder1_chkStatus" class="setWorkingDate_n_statuc">Check If
+															<input id="active" type="checkbox" name="active" class="setWorkingDate_n_statuc" value="0"><label
+																for="ContentPlaceHolder1_chkStatus" >Check If
 																Active</label>
 														</div>
 													</div>
@@ -549,12 +574,12 @@
 												<div class="form-group">
 													<div class="col-sm-4"></div>
 													<div class="col-sm-8">
-														<input type="submit" name="" value="Save" 
+														<input type="submit" name="" value="Add" 
 															id="add-update-btn" tabindex="12" title="Click to Save"
 															class="btn btn-xl btn-primary button-submit font13">
 														<input type="reset"
 															name="ctl00$ContentPlaceHolder1$btnCancel" value="Cancel"
-															id="cancel-btn" tabindex="13" title="Click to Cancel"
+															id="reset" tabindex="13" title="Click to Cancel"
 															class="btn btn-default">
 														<div id="ContentPlaceHolder1_valsummarySubmit"
 															style="display: none;"></div>

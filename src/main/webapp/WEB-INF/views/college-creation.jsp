@@ -12,6 +12,27 @@
 <jsp:include page="script.jsp" />
 
 <script type="text/javascript">
+	$(function() {
+		$(".datepicker").datepicker({
+			showOn : "both",
+			/* buttonImage : "image.jpg", */
+			dateFormat : "dd-mm-yy",
+			buttonText : "<i  class='icon-calendar my_cal'></i>",
+			/* changeMonth: true,
+			changeYear: true,
+			showButtonPanel: true,
+			yearRange: 'c-20:c+30',
+			maxDate: '@maxDate',
+			minDate: '@minDate', */
+			buttonImageOnly : false,
+			constrainInput : true,
+			/*   minDate:+0, //you do not want to show previous date.*/
+			maxDate : +0
+		// you do not want to show next day. 
+		});
+
+	});
+
 	function getCollegeInformation(collegeId) {
 		$.ajax({
 			async : false,
@@ -99,6 +120,8 @@
 
 	$(document).ready(function() {
 		$("#reset").click(function() {
+			//alert('click');
+			$("#Image2").attr('src', './resources/No_image_available.svg');
 			$("#college-add-edit-form").prop("action", "./college/add");
 			$("#add-update-btn").val('Add');
 
@@ -111,21 +134,21 @@
 			}
 		});
 
-		jQuery.validator.addMethod('selectcheck', function (value) {
-	        return (value != '0');
-	    }, "");
-		
+		jQuery.validator.addMethod('selectcheck', function(value) {
+			return (value != '0');
+		}, "");
+
 		$("#college-add-edit-form").validate({
 			// Specify the validation rules
 			rules : {
 				societyId : {
 					required : true,
-					selectcheck: true
+					selectcheck : true
 				//,
 				},
 				universityId : {
 					required : true,
-					selectcheck: true
+					selectcheck : true
 				//,
 				},
 				collegeName : {
@@ -163,6 +186,9 @@
 				email1 : {
 					required : true
 				//,
+				},
+				workOrderDateString : {
+					required : true
 				}
 			},
 
@@ -170,11 +196,11 @@
 			messages : {
 				societyId : {
 					required : "Please select Society",
-					selectcheck: "Please select Society"
+					selectcheck : "Please select Society"
 				},
 				universityId : {
 					required : "Please select University",
-					selectcheck: "Please select University"
+					selectcheck : "Please select University"
 				},
 				collegeName : {
 					required : "Please Enter College Name"//,
@@ -202,6 +228,9 @@
 				},
 				email1 : {
 					required : "Please Enter Email Id"//,
+				},
+				workOrderDateString : {
+					required : "Please Enter Work Order Date"
 				}
 			},
 
@@ -209,8 +238,7 @@
 				form.submit();
 			}
 		});
-		
-		
+
 		/*$("#societyId").change(function(){
 			var societyId = $("#societyId").val();
 			
@@ -345,7 +373,8 @@
 																<div class="col-sm-4">College Logo</div>
 																<div class="col-sm-8">
 																	<input type="file" name="collegeLogo" id="collegeLogo"
-														title="Please Select Logo" class="btn btn-default" onchange="showImage()">
+																		title="Please Select Logo" class="btn btn-default"
+																		onchange="showImage()">
 
 
 																</div>
@@ -355,7 +384,8 @@
 																<div class="col-sm-4"></div>
 																<div class="col-sm-8">
 
-																	<img id="Image2" src="../images/nophoto.jpg"
+																	<img id="Image2"
+																		src="./resources/No_image_available.svg"
 																		style="height: 75px; width: 75px;">
 
 
@@ -368,8 +398,8 @@
 																</div>
 																<div class="col-sm-8">
 																	<input name="panNumber" type="text" maxlength="6"
-														id="panNumber" class="form-control"
-														placeholder="Please Enter PAN Number">
+																		id="panNumber" class="form-control"
+																		placeholder="Please Enter PAN Number">
 
 
 																</div>
@@ -381,96 +411,105 @@
 																</div>
 																<div class="col-sm-8">
 																	<input name="tanNumber" type="text" maxlength="200"
-														id="tanNumber" class="form-control"
-														placeholder="Please Enter TAN Number">
+																		id="tanNumber" class="form-control"
+																		placeholder="Please Enter TAN Number">
 
 
 																</div>
 															</div>
 															<div class="form-group">
-																<div class="col-sm-4">
-																	TIN No
-																</div>
+																<div class="col-sm-4">TIN No</div>
 																<div class="col-sm-8">
 																	<input name="tinNumber" type="text" maxlength="20"
-														id="tinNumber" class="form-control"
-														placeholder="Please Enter TIN Number">
+																		id="tinNumber" class="form-control"
+																		placeholder="Please Enter TIN Number">
+
+
+																</div>
+															</div>
+															<div class="form-group">
+																<div class="col-sm-4">Principal Name</div>
+																<div class="col-sm-8">
+																	<input name="principalName" type="text" maxlength="20"
+																		id="principalName" class="form-control"
+																		placeholder="Please Enter Principal Name">
 
 
 																</div>
 															</div>
 															<div class="form-group">
 																<div class="col-sm-4">
-																	Principal Name
+																	Address<span style="color: #FF0000; font-weight: bold">*</span>
 																</div>
 																<div class="col-sm-8">
-																	<input name="principalName" type="text" maxlength="20"
-														id="principalName" class="form-control"
-														placeholder="Please Enter Principal Name">
-
-
-																</div>
-															</div>
-															<div class="form-group">
-																<div class="col-sm-4">Address<span style="color: #FF0000; font-weight: bold">*</span></div>
-																<div class="col-sm-8">
-																	<textarea name="address" rows="2" cols="20" id="address"
-														class="form-control" placeholder="Please Enter Address "></textarea>
+																	<textarea name="address" rows="2" cols="20"
+																		id="address" class="form-control"
+																		placeholder="Please Enter Address "></textarea>
 																</div>
 															</div>
 
 															<div class="form-group">
-																<div class="col-sm-4">City<span style="color: #FF0000; font-weight: bold">*</span></div>
+																<div class="col-sm-4">
+																	City<span style="color: #FF0000; font-weight: bold">*</span>
+																</div>
 																<div class="col-sm-8">
 																	<input name="city" type="text" id="city"
-														class="form-control" placeholder="Please Enter City">
+																		class="form-control" placeholder="Please Enter City">
 
 																</div>
 															</div>
 
 															<div class="form-group">
-																<div class="col-sm-4">Pin Code<span style="color: #FF0000; font-weight: bold">*</span></div>
+																<div class="col-sm-4">
+																	Pin Code<span style="color: #FF0000; font-weight: bold">*</span>
+																</div>
 																<div class="col-sm-8">
 																	<input name="pinCode" type="text" maxlength="6"
-														id="pinCode" class="form-control"
-														placeholder="Please Enter Pin">
+																		id="pinCode" class="form-control"
+																		placeholder="Please Enter Pin">
 
 																</div>
 															</div>
 															<div class="form-group">
-																<div class="col-sm-4">Phone No.1<span style="color: #FF0000; font-weight: bold">*</span></div>
+																<div class="col-sm-4">
+																	Phone No.1<span
+																		style="color: #FF0000; font-weight: bold">*</span>
+																</div>
 																<div class="col-sm-8">
-																	<input name="phone1" type="text" maxlength="15" id="phone1"
-														class="form-control"
-														placeholder="Please Enter Phone No. 1">
+																	<input name="phone1" type="text" maxlength="15"
+																		id="phone1" class="form-control"
+																		placeholder="Please Enter Phone No. 1">
 
 																</div>
 															</div>
 															<div class="form-group">
 																<div class="col-sm-4">Phone No.2</div>
 																<div class="col-sm-8">
-																	<input name="phone2" type="text" maxlength="15" id="phone2"
-														class="form-control"
-														placeholder="Please Enter Phone No. 2">
+																	<input name="phone2" type="text" maxlength="15"
+																		id="phone2" class="form-control"
+																		placeholder="Please Enter Phone No. 2">
 
 																</div>
 															</div>
 															<div class="form-group">
 																<div class="col-sm-4">Phone No.3</div>
 																<div class="col-sm-8">
-																	<input name="phone3" type="text" maxlength="15" id="phone3"
-														class="form-control"
-														placeholder="Please Enter phone No. 3">
+																	<input name="phone3" type="text" maxlength="15"
+																		id="phone3" class="form-control"
+																		placeholder="Please Enter phone No. 3">
 
 																</div>
 															</div>
 
 															<div class="form-group">
-																<div class="col-sm-4">Email ID 1<span style="color: #FF0000; font-weight: bold">*</span></div>
+																<div class="col-sm-4">
+																	Email ID 1<span
+																		style="color: #FF0000; font-weight: bold">*</span>
+																</div>
 																<div class="col-sm-8">
 																	<input name="email1" type="text" maxlength="100"
-														id="email1" class="form-control"
-														placeholder="Please Enter Email 1"> <span
+																		id="email1" class="form-control"
+																		placeholder="Please Enter Email 1"> <span
 																		id="ContentPlaceHolder1_ref1" style="display: none;"></span>
 																</div>
 															</div>
@@ -478,154 +517,161 @@
 																<div class="col-sm-4">Email ID 2</div>
 																<div class="col-sm-8">
 																	<input name="email2" type="text" maxlength="100"
-														id="email2" class="form-control"
-														placeholder="Please Enter Email 2"> <span
+																		id="email2" class="form-control"
+																		placeholder="Please Enter Email 2"> <span
 																		id="ContentPlaceHolder1_RegularExpressionValidator1"
 																		style="display: none;"></span>
 																</div>
 															</div>
 															<div class="form-group">
-												<div class="col-sm-4">Status</div>
+																<div class="col-sm-4">Status</div>
 
 
-												<div class="col-sm-8">
-													<input id="active" type="checkbox" name="active" value="1"
-														checked="checked" tabindex="8" class="active_n_socialcollege">
-													<!-- <label for="ContentPlaceHolder1_chkActive"> </label> -->
-													<span id="ContentPlaceHolder1_RegularExpressionValidator1"
-														style="display: none;"></span>
-												</div>
-											</div>
+																<div class="col-sm-8">
+																	<input id="active" type="checkbox" name="active"
+																		value="1" checked="checked" tabindex="8"
+																		class="active_n_socialcollege">
+																	<!-- <label for="ContentPlaceHolder1_chkActive"> </label> -->
+																	<span
+																		id="ContentPlaceHolder1_RegularExpressionValidator1"
+																		style="display: none;"></span>
+																</div>
+															</div>
 
-											<div class="form-group">
-												<div class="col-sm-4">Society Status</div>
-
-
-												<div class="col-sm-8">
-													<input id="socialCollege" type="checkbox" value="1"
-														name="socialCollege" checked="checked" tabindex="8"
-														class="active_n_socialcollege">
-													<!-- <label for="ContentPlaceHolder1_chkActive"></label> -->
-													<span id="ContentPlaceHolder1_RegularExpressionValidator1"
-														style="display: none;"></span>
-												</div>
-											</div>
+															<div class="form-group">
+																<div class="col-sm-4">Society Status</div>
 
 
-
-
-
-											<div class="form-group">
-												<div class="col-sm-4">Work Order Date</div>
-
-
-												<div class="col-sm-8">
-
-													<!--  <input name="WorkOrder" type="text" maxlength="100" id="Email2" class="form-control" placeholder="Please Enter Work Order Date"> -->
-													<input type="text" name="workOrderDateString"
-														id="workOrderDateString"
-														placeholder="Press to Select date">
-
-
-
-												</div>
-											</div>
-
-											<div class="form-group">
-												<div class="col-sm-4">Bill Date From</div>
-
-
-												<div class="col-sm-8">
-
-													<!--  <input name="WorkOrder" type="text" maxlength="100" id="Email2" class="form-control" placeholder="Please Enter Work Order Date"> -->
-													<input type="text" name="billDateFrom" id="billDateFrom"
-														placeholder="Press to Select date">
-
-
-
-												</div>
-											</div>
-
-											<div class="form-group">
-												<div class="col-sm-4">Bill Date To</div>
-
-
-												<div class="col-sm-8">
-
-													<!--  <input name="WorkOrder" type="text" maxlength="100" id="Email2" class="form-control" placeholder="Please Enter Work Order Date"> -->
-													<input type="text" name="billDateTo" id="billDateTo"
-														placeholder="Press to Select date">
-
-
-
-												</div>
-											</div>
+																<div class="col-sm-8">
+																	<input id="socialCollege" type="checkbox" value="1"
+																		name="socialCollege" checked="checked" tabindex="8"
+																		class="active_n_socialcollege">
+																	<!-- <label for="ContentPlaceHolder1_chkActive"></label> -->
+																	<span
+																		id="ContentPlaceHolder1_RegularExpressionValidator1"
+																		style="display: none;"></span>
+																</div>
+															</div>
 
 
 
 
 
+															<div class="form-group">
+																<div class="col-sm-4">Work Order Date</div>
+
+
+																<div class="col-sm-8">
+
+																	<!--  <input name="WorkOrder" type="text" maxlength="100" id="Email2" class="form-control" placeholder="Please Enter Work Order Date"> -->
+																	<input type="text" name="workOrderDateString"
+																		id="workOrderDateString" class="datepicker"
+																		placeholder="Press to Select date">
+
+
+
+																</div>
+															</div>
+
+															<div class="form-group">
+																<div class="col-sm-4">Bill Date From</div>
+
+
+																<div class="col-sm-8">
+
+																	<!--  <input name="WorkOrder" type="text" maxlength="100" id="Email2" class="form-control" placeholder="Please Enter Work Order Date"> -->
+																	<input type="text" name="billDateFrom"
+																		id="billDateFrom" class="datepicker"
+																		placeholder="Press to Select date">
+
+
+
+																</div>
+															</div>
+
+															<div class="form-group">
+																<div class="col-sm-4">Bill Date To</div>
+
+
+																<div class="col-sm-8">
+
+																	<!--  <input name="WorkOrder" type="text" maxlength="100" id="Email2" class="form-control" placeholder="Please Enter Work Order Date"> -->
+																	<input type="text" name="billDateTo" id="billDateTo"
+																		class="datepicker" placeholder="Press to Select date">
+
+
+
+																</div>
+															</div>
 
 
 
 
 
 
-											<div class="form-group">
-												<div class="col-sm-4">Work Order No</div>
-												<div class="col-sm-8">
-													<input name="workOrderNumber" type="text" maxlength="100"
-														id="workOrderNumber" class="form-control"
-														placeholder="Please Enter Email 2"> <span
-														id="ContentPlaceHolder1_RegularExpressionValidator1"
-														style="display: none;"></span>
-												</div>
-											</div>
 
 
 
-											<div class="form-group">
-												<div class="col-sm-4">Fax 1</div>
-												<div class="col-sm-8">
-													<input name="fax1" type="text" maxlength="15" id="fax1"
-														class="form-control" placeholder="Please Enter Fax No. 1">
-
-												</div>
-											</div>
-
-											<div class="form-group">
-												<div class="col-sm-4">Fax 2</div>
-												<div class="col-sm-8">
-													<input name="fax2" type="text" maxlength="15" id="fax2"
-														class="form-control" placeholder="Please Enter Fax No. 2">
-
-												</div>
-											</div>
 
 
-											<div class="form-group">
-												<div class="col-sm-4">Web Site</div>
-												<div class="col-sm-8">
-													<input name="website" type="text" maxlength="100"
-														id="website" class="form-control"
-														placeholder="Please Enter Website URL"> <span
-														id="ContentPlaceHolder1_RegularExpressionValidator4"
-														style="display: none;"></span>
+															<div class="form-group">
+																<div class="col-sm-4">Work Order No</div>
+																<div class="col-sm-8">
+																	<input name="workOrderNumber" type="text"
+																		maxlength="100" id="workOrderNumber"
+																		class="form-control"
+																		placeholder="Please Enter Email 2"> <span
+																		id="ContentPlaceHolder1_RegularExpressionValidator1"
+																		style="display: none;"></span>
+																</div>
+															</div>
 
-												</div>
-											</div>
 
-											<div class="form-group">
-												<div class="col-sm-4">No of Users</div>
-												<div class="col-sm-8">
-													<input name="numberOfUsers" type="text" maxlength="100"
-														id="numberOfUsers" class="form-control"
-														placeholder="Please Enter Website URL"> <span
-														id="ContentPlaceHolder1_RegularExpressionValidator4"
-														style="display: none;"></span>
 
-												</div>
-											</div>
+															<div class="form-group">
+																<div class="col-sm-4">Fax 1</div>
+																<div class="col-sm-8">
+																	<input name="fax1" type="text" maxlength="15" id="fax1"
+																		class="form-control"
+																		placeholder="Please Enter Fax No. 1">
+
+																</div>
+															</div>
+
+															<div class="form-group">
+																<div class="col-sm-4">Fax 2</div>
+																<div class="col-sm-8">
+																	<input name="fax2" type="text" maxlength="15" id="fax2"
+																		class="form-control"
+																		placeholder="Please Enter Fax No. 2">
+
+																</div>
+															</div>
+
+
+															<div class="form-group">
+																<div class="col-sm-4">Web Site</div>
+																<div class="col-sm-8">
+																	<input name="website" type="text" maxlength="100"
+																		id="website" class="form-control"
+																		placeholder="Please Enter Website URL"> <span
+																		id="ContentPlaceHolder1_RegularExpressionValidator4"
+																		style="display: none;"></span>
+
+																</div>
+															</div>
+
+															<div class="form-group">
+																<div class="col-sm-4">No of Users</div>
+																<div class="col-sm-8">
+																	<input name="numberOfUsers" type="text" maxlength="100"
+																		id="numberOfUsers" class="form-control"
+																		placeholder="Please Enter Website URL"> <span
+																		id="ContentPlaceHolder1_RegularExpressionValidator4"
+																		style="display: none;"></span>
+
+																</div>
+															</div>
 
 
 
@@ -657,26 +703,26 @@
 																<table class="table table-hover table-striped">
 
 																	<tbody>
-																		<tbody>
-														<c:forEach items="${collegeList}" var="college">
-															<tr class="customers">
-																<td style="width: 5%;"><input type="button"
-																data-original-title="Edit Society" class="bs-tooltip"
-														data-placement="top"
-																	name="ctl00$ContentPlaceHolder1$rptSociety$ctl01$btnEdit"
-																	value="Select"
-																	onclick="getCollegeInformation('${college.collegeId}')"
-																	tabindex="11" title="Edit Record"></td>
-																<%-- <td style="width: 10%; text-align: center">
+																	<tbody>
+																		<c:forEach items="${collegeList}" var="college">
+																			<tr class="customers">
+																				<td style="width: 5%;"><input type="button"
+																					data-original-title="Edit Society"
+																					class="bs-tooltip" data-placement="top"
+																					name="ctl00$ContentPlaceHolder1$rptSociety$ctl01$btnEdit"
+																					value="Select"
+																					onclick="getCollegeInformation('${college.collegeId}')"
+																					tabindex="11" title="Edit Record"></td>
+																				<%-- <td style="width: 10%; text-align: center">
 																	${college.collegeId}</td> --%>
-																<td style="width: 85%; text-align: left">
-																	${college.collegeName}</td>
+																				<td style="width: 85%; text-align: left">
+																					${college.collegeName}</td>
 
-															</tr>
+																			</tr>
 
-														</c:forEach>
+																		</c:forEach>
 
-													</tbody>
+																	</tbody>
 
 																	</tbody>
 																</table>
@@ -700,19 +746,20 @@
 																	class="table table-hover table-striped">
 																	<tbody>
 
-																		<c:forEach items="${moduleList}" var="module">
-															<tr class="customers">
-																<td style="width: 10%; padding-left: 14px;"><span
-																	title="1"><input id="module-${module.moduleId}"
-																		type="checkbox" name="moduleIds" value="${module.moduleId}"></span>
-																</td>
-																<td style="width: 90%; text-align: left"><span
-																	id="ContentPlaceHolder1_Repeater_Module_lblFields_0">${module.moduleName}</span>
-																</td>
+																		<c:forEach items="${allModuleList}" var="module">
+																			<tr class="customers">
+																				<td style="width: 10%; padding-left: 14px;"><span
+																					title="1"><input
+																						id="module-${module.moduleId}" type="checkbox"
+																						name="moduleIds" value="${module.moduleId}"></span>
+																				</td>
+																				<td style="width: 90%; text-align: left"><span
+																					id="ContentPlaceHolder1_Repeater_Module_lblFields_0">${module.moduleName}</span>
+																				</td>
 
 
-															</tr>
-														</c:forEach> 
+																			</tr>
+																		</c:forEach>
 
 
 																	</tbody>
@@ -730,15 +777,14 @@
 															<div class="col-sm-12">
 																<div class="col-sm-4"></div>
 																<div class="col-lg-8">
-													<input type="submit" name="update" 
-													value="Save" onclick="" 
-														id="add-update-btn" title="Click to Save"
-														class="btn btn-default"> <input type="reset"
-														name="reset" value="Cancel" id="reset"
-														title="Click to Cancel" class="btn btn-default">
-													<div id="ContentPlaceHolder1_valSave"
-														style="display: none;"></div>
-												</div>
+																	<input type="submit" name="update" value="Save"
+																		onclick="" id="add-update-btn" title="Click to Save"
+																		class="btn btn-default"> <input type="reset"
+																		name="reset" value="Cancel" id="reset"
+																		title="Click to Cancel" class="btn btn-default">
+																	<div id="ContentPlaceHolder1_valSave"
+																		style="display: none;"></div>
+																</div>
 
 															</div>
 

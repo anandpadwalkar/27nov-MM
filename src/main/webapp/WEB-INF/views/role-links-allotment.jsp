@@ -51,6 +51,22 @@
 			}
 		});
 	});
+	
+
+	 var check_flag="true";
+	 $('#my_switch_button').click(function(){
+		
+		 if(check_flag=='true'){
+		 jQuery('#project-switcher').addClass('container project-switcher open');
+		 jQuery('#project-switcher').css('display','block');
+		 check_flag="false";
+	      }else{
+		 jQuery('#project-switcher').removeClass('open');
+		 jQuery('#project-switcher').css('display','none');
+		 check_flag="true";
+	 }
+	 });
+
 </script>
 </head>
 <body>

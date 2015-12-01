@@ -32,24 +32,31 @@ import com.iitms.rfcampusdomain.authentication.service.SocietyCreationService;
 @Controller
 public class SocietyCreationController {
 
-    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+    private static final Logger logger = LoggerFactory.getLogger(SocietyCreationController.class);
 
     @Autowired
     private SocietyCreationService societyCreationService;
+
     @Autowired
     private ModuleService moduleService;
+
     @Autowired
     private SessionUser sessionUser;
+
     @Autowired
     private FileUploadUtil fileUploadUtil;
-    
+
     @RequestMapping(value = "/society")
     public ModelAndView society() {
         ModelAndView model = new ModelAndView();
         List<SocietyMaster> societyList = societyCreationService.getAllSociety();
-        List<ModuleMasterEntity> moduleList = moduleService.listAuthorisedModule(sessionUser.getCustomLoginUser().getAllocatedRoleIds());
+        List<ModuleMasterEntity> moduleList =
+            moduleService.listAuthorisedModule(sessionUser.getCustomLoginUser().getAllocatedRoleIds());
         model.addObject("societyList", societyList);
         model.addObject("moduleList", moduleList);
+        List<ModuleMasterEntity> allModuleList = moduleService.listAllModule();
+
+        model.addObject("allModuleList", allModuleList);
         model.setViewName("society");
 
         return model;
@@ -64,8 +71,8 @@ public class SocietyCreationController {
     }
 
     @RequestMapping(value = "/society/add-society-module", method = RequestMethod.POST)
-    public  String addSociety(@ModelAttribute SocietyCreationModel entity,
-        BindingResult result, @RequestParam(name = "societyLogo") MultipartFile societyLogo, HttpServletRequest request, Model model) {
+    public String addSociety(@ModelAttribute SocietyCreationModel entity, BindingResult result,
+        @RequestParam(name = "societyLogo") MultipartFile societyLogo, HttpServletRequest request, Model model) {
         logger.info("Add Society : " + entity);
         String fileName = fileUploadUtil.uploadFile(request, societyLogo, entity.getOldSocietyLogo(), "society");
         entity.setSocLogo(fileName);
@@ -74,25 +81,22 @@ public class SocietyCreationController {
     }
 
     @RequestMapping(value = "/society/update-society-module", method = RequestMethod.POST)
-    public String updateSociety(@ModelAttribute SocietyCreationModel entity,
-        BindingResult result, @RequestParam(name = "societyLogo") MultipartFile societyLogo, HttpServletRequest request, Model model) {
+    public String updateSociety(@ModelAttribute SocietyCreationModel entity, BindingResult result,
+        @RequestParam(name = "societyLogo") MultipartFile societyLogo, HttpServletRequest request, Model model) {
         logger.info("Update Society : " + entity);
         String fileName = fileUploadUtil.uploadFile(request, societyLogo, entity.getOldSocietyLogo(), "society");
-        if(fileName != null){
+        if (fileName != null) {
             entity.setSocLogo(fileName);
-        }
-        else{
+        } else {
             entity.setSocLogo(entity.getOldSocietyLogo());
         }
         boolean new_soc_id = societyCreationService.updateSociety(entity);
         return "redirect:/society";
     }
-    
+
     // ================================== society module End here ==============================================
 
     // ================================== Menu Creation module start here ==============================================
-
-    
 
     // ================================== Menu Creation module end here ==============================================
 

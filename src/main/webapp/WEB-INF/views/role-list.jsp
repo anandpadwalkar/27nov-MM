@@ -304,6 +304,7 @@
 						<div id="my_documents_container"
 							style="margin-left: 0px; margin: auto; width: 90%"
 							class="column-one clearfix">
+							 <div class="grid-header text">Role Master </div>
 							<div class="grid box-filters">
 								<div style="height: 75px" class="table-header">
 									<form id="add-edit-module"
@@ -378,7 +379,7 @@
 															<button type="button"
 															data-original-title="Cancel"
 														data-placement="top"
-																class="btn btn-xl btn-success button-submit font13 bs-tooltip"
+																class="btn btn-xl btn-default button-submit font13 bs-tooltip"
 																id="cancel-btn">Cancel</button>
 														</td>
 
@@ -403,7 +404,7 @@
 									<div class="row">
 										<div class="dataTables_header clearfix">
 											<div class="col-md-6"></div>
-										</div>
+										</div> </div>
 										<table
 											class="table table-striped table-bordered table-hover table-checkable table-responsive datatable dataTable"
 											id="DataTables_Table_0"

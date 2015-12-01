@@ -86,6 +86,9 @@
 			function() {
 				$("#reset").click(
 						function() {
+							$("#Image2").attr(
+									'src',
+									'./resources/No_image_available.svg');
 							$("#society-add-edit-form").prop("action",
 									"./society/add-society-module");
 							$("#add-update-btn").val('Add');
@@ -246,21 +249,21 @@
 									<div class="col-sm-4"></div>
 									<div class="col-sm-8">
 
-										<img id="Image2" src="../images/nophoto.jpg"
+										<img id="Image2" src="./resources/No_image_available.svg"
 											style="height: 75px; width: 75px;">
 
 
 									</div>
 								</div>
 
-								<div class="form-group">
+								<!-- <div class="form-group">
 
 									<div class="col-sm-4"></div>
 									<div class="col-sm-8">
 										<input type="submit" name="Upload" value="Upload" id="Upload"
 											title="Click To Upload" class="btn btn-default">
 									</div>
-								</div>
+								</div> -->
 								<div class="form-group">
 									<div class="col-sm-4">Address</div>
 									<div class="col-sm-8">
@@ -422,7 +425,7 @@
 										class="table table-hover table-striped">
 										<tbody>
 
-											<c:forEach items="${moduleList}" var="module">
+											<c:forEach items="${allModuleList}" var="module">
 												<tr class="customers">
 													<td style="width: 10%; padding-left: 14px;"><span
 														title="1"><input id="module-${module.moduleId}"

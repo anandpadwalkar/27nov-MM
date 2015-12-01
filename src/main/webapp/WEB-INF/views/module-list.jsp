@@ -126,7 +126,7 @@ var currentModuleId;
 					<!-- /Page Header -->
 
 					<div
-						class="second-column one-child-container relative padding-top-75px">
+						class="second-column one-child-container relative ">
 						<!--=== Navigation Vertical ===-->
 
 						<!-- /Navigation Vertical -->
@@ -134,34 +134,16 @@ var currentModuleId;
 						<!-- Modal dialog -->
 						<!-- /Navigation Vertical -->
 						<div id="my_documents_container"
-							style="margin-left: 0px; margin: auto; width: 90%"
-							class="column-one clearfix">
+							style=""
+							class="doc-container column-one clearfix">
+							 <div class="grid-header text">Module Master </div>
 							<div class="grid box-filters">
-								<div style="height: 75px" class="table-header">
+								<div  class="table-header">
 									<form id="add-edit-module" class="form-inline ng-pristine ng-valid" method="post"
 										action="./modules/add">
 										<input type="hidden" name="moduleId" id="moduleId" value="0">
 										<div class="row-fluid">
-											<!-- <div class="span3">
-												<div class="">
-													<table width="100%" cellspacing="0" cellpadding="0">
-														<tr>
-															<td class="padding0 no_border" width="15%"><label
-																class="float_left mrgall-01 font13"> <strong
-																	class="">Role Type</strong>
-															</label></td>
-															<td class="no_border"><div
-																	class="controls project-input-contr">
-																	<select name="userTypeId" id="roleType"
-																		class=" select2 full-width-fix required">
-																	</select>
-																</div></td>
-														</tr>
-													</table>
-												</div>
-											</div> -->
-
-											<div class="span3">
+											<div class="span4">
 												<table width="10%" cellspacing="0" cellpadding="0">
 													<tr>
 														<td><label class="float_left mrgall-01 font13">
@@ -175,21 +157,21 @@ var currentModuleId;
 													</tr>
 												</table>
 											</div>
-											<div class="span3">
+											<div class="span4">
 												<table width="10%" cellspacing="0" cellpadding="0">
 													<tr>
 														<td><label class="float_left mrgall-01 font13">
-																<strong class="">Sr.No.</strong>
+																<strong class="">Serial.No.</strong>
 														</label></td>
 														<td class="no_border"><div>
 																<input type="text"
 																	class="controls project-input-contr"
-																	id="serialNumber" name="serialNumber" style="width: 100%;">
+																	id="serialNumber" name="serialNumber" >
 															</div></td>
 													</tr>
 												</table>
 											</div>
-											<div class="span3">
+											<div class="span4">
 												<table width="10%" cellspacing="0" cellpadding="0">
 													<tr>
 														<td><label class="float_left mrgall-01 font13">
@@ -212,7 +194,7 @@ var currentModuleId;
 															<button type="button"
 															data-original-title="Cancel"
 														data-placement="top"
-																class="btn btn-xl btn-success button-submit font13 bs-tooltip"
+																class="btn btn-xl btn-default button-submit font13 bs-tooltip"
 																id="cancel-btn">Cancel</button>
 														</td>
 
@@ -237,7 +219,7 @@ var currentModuleId;
 									<div class="row">
 										<div class="dataTables_header clearfix">
 											<div class="col-md-6"></div>
-										</div>
+										</div></div>
 										<table
 											class="table table-striped table-bordered table-hover table-checkable table-responsive datatable dataTable"
 											id="DataTables_Table_0"
@@ -257,7 +239,7 @@ var currentModuleId;
 														aria-label="Department: activate to sort column ascending">Status</th>
 													<th class="sorting" role="columnheader" tabindex="0"
 														aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-														aria-label="Assign to Project: activate to sort column ascending">Operation</th>
+														aria-label="Assign to Project: activate to sort column ascending">Action</th>
 												</tr>
 											</thead>
 
@@ -265,7 +247,7 @@ var currentModuleId;
 												<c:set var="srno" value="1" />
 											<c:forEach items="${allModuleList}" var="module">
 												<tr class="odd">
-													<td class=" "><a href="staff-user-profile.html">${srno}</a></td>
+													<td class=" "><a href="staff-user-profile.html">${module.serialNumber}</a></td>
 													<td class=" ">${module.moduleName}</td>
 													<c:if test="${module.moduleStatus eq 1}">
 														<td class=" ">Active</td>

@@ -2,25 +2,39 @@
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@page session="true"%>
 <html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>Change Password</title>
+
+<jsp:include page="script.jsp" />
+
+</head>
 <body>
-	<h1>Title : ${title}</h1>
-	<h1>Message : ${message}</h1>
-	<%--  <h1>MenuList: ${menuList}</h1> --%> 
-     <c:forEach items="${menus}" var="menu">
-     	${menu.menuName}<br>
-     </c:forEach>  
-	<c:if test="${pageContext.request.userPrincipal.name != null}">
-	   <h2>Welcome : ${pageContext.request.userPrincipal.name} 
-           | <a href="<c:url value="/j_spring_security_logout" />" > Logout</a></h2>  
-	</c:if>
+<!-- Header -->
+	<jsp:include page="header.jsp" />
+	<!-- /.header -->
+	<div id="container" class="fixed-header">
+      <div id="content">
+    <div class="layout-container">
+          <div class=""> 
+        <!--=== Page Header ===-->
+        <jsp:include page="page-header.jsp" />
+        <!-- /Page Header -->
+        
+       
+      </div>
+          
+          
+        </div>
+    <!-- /.container --> 
+    
+  </div>
+  <h1>${message}</h1>
+	<a href='<c:url value="/success"/>'>Back to the Dashboard</a>
+    </div>
 	
-	<sec:authorize ifAnyGranted="ROLE_USER" >
-		<h4>Its User</h4>
-	</sec:authorize>
-	<sec:authorize ifAnyGranted="ROLE_ADMIN" >
-		<h4>Its Admin</h4>
-		
-	</sec:authorize>
 	
 </body>
 </html>

@@ -93,20 +93,20 @@
 	</head>
 	
 	<body class="breakpoint-1200" >
-	<img id="test" src="${pageContext.request.contextPath}/resources/bootstrap/img/minebg.jpg"  style=";position:absolute;width:100%;height:100%"> 
+	<img id="test" src="resources/bootstrap/img/minebg.jpg"  style=";position:absolute;width:100%;height:100%"> 
            
 <!-- Header -->
 
-<!-- <div class="header navbar navbar-fixed-top" role="banner">
-    Top Navigation Bar
+<div class="header navbar navbar-fixed-top" role="banner">
+    <!-- Top Navigation Bar -->
     <div class="container">
-        Logo
+        <!-- Logo -->
          <a class="navbar-brand" href="index.html">
             <img src="resources/bootstrap/img/master_logo.png" alt="logo" />
         
         </a>
 	</div>
-</div>  -->
+</div> 
 
 <!-- Header -->
    
@@ -136,7 +136,7 @@
            </p>
            
             <p class="userId_box chkbox" style="margin-top: -21px; margin-left: 8%">
-              <a data-no-turbolink="" href="#" style="top: 8px; position: relative; "  class="lightBlue_link fgt_pwd">Forgot Password?</a>
+              <a data-no-turbolink="" href="./forgetPassword" style="top: 8px; position: relative; "  class="lightBlue_link fgt_pwd">Forgot Password?</a>
               <span class="rcContainer">
               	<input type="checkbox" class="rc remember_me" name="remember_me" id="remember_me">
                 <label class="keep_logged_in" for="remember_me">Remember me</label>
@@ -149,6 +149,7 @@
               <span class="">Login</span>
               </button>
             </p>
+            
             
     </div>
           <!--right spacing  -->
