@@ -40,7 +40,12 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserDetailsCu
         
         return buildUserForAuthentication(userMasterEntity, authorities);
     }
-
+    @Override
+    public UserMasterEntity getuserInformation(String username) {
+        return userDetailsDao.loadUserByUsername(username);
+    }
+    
+    
     private User buildUserForAuthentication(UserMasterEntity user, List<GrantedAuthority> authorities) {
         return new User(user.getUsername(), user.getPassword(), user.isEnabled(), true,
                 true, true, authorities);
