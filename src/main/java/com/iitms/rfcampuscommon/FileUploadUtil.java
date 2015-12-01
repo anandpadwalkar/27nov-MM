@@ -1,7 +1,6 @@
 package com.iitms.rfcampuscommon;
 
 import java.io.File;
-import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -55,6 +54,21 @@ public class FileUploadUtil {
                 }
                 }
                     break;
+                case "user": {
+                    directory = new File(realPath + uploadsDirectories.getUploadDirectory()
+                    + uploadsDirectories.getAuthorizationDirectory() + uploadsDirectories.getUser());
+
+                if (!directory.exists())
+                    directory.mkdirs();
+                
+                if (newFile.getOriginalFilename() != "") {
+                    deleteFile(request, oldFileName, "user");
+                    fileName = getFileName(newFile.getOriginalFilename());
+                    newFile.transferTo(new File(realPath + uploadsDirectories.getUploadDirectory()
+                        + uploadsDirectories.getAuthorizationDirectory() + uploadsDirectories.getUser() + fileName));
+                }
+                }
+                    break;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,6 +95,12 @@ public class FileUploadUtil {
                 new File(request.getSession().getServletContext().getRealPath("")
                     + uploadsDirectories.getUploadDirectory() + uploadsDirectories.getAuthorizationDirectory()
                     + uploadsDirectories.getSociety() + oldFileName).delete();
+            }
+                break;
+            case "user": {
+                new File(request.getSession().getServletContext().getRealPath("")
+                    + uploadsDirectories.getUploadDirectory() + uploadsDirectories.getAuthorizationDirectory()
+                    + uploadsDirectories.getUser() + oldFileName).delete();
             }
                 break;
         }
