@@ -20,14 +20,19 @@ import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-
 @Entity
 @Table(name = " master.useraccess_user_master")
+/*
+ * @FetchProfile(name = "roleMasterEntityList", fetchOverrides = {
+ * @FetchProfile.FetchOverride(entity = UserMasterEntity.class, association = "roleMasterEntityList", mode =
+ * FetchMode.JOIN) })
+ */
 public class UserMasterEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", columnDefinition = "serial")
     private int userId;
 
@@ -46,19 +51,47 @@ public class UserMasterEntity implements Serializable {
     @Column(name = "enabled")
     private boolean enabled;
 
-    //@Column(name = "role_ids")
-    @Transient
+    @Column(name = "account_non_expired")
+    private boolean accountNonExpired;
+
+    @Column(name = "credentials_non_expired")
+    private boolean credentialsNonExpired;
+
+    @Column(name = "account_non_locked")
+    private boolean accountNonLocked;
+
+    public boolean isAccountNonExpired() {
+        return accountNonExpired;
+    }
+
+    public void setAccountNonExpired(boolean accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
+    }
+
+    public boolean isCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
+
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
+    }
+
+    public boolean isAccountNonLocked() {
+        return accountNonLocked;
+    }
+
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
+
+    @Column(name = "role_ids")
     private String roleIds;
-    
+
     @Column(name = "role_id")
     private int roleId;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "transaction.useraccess_user_role_allocation",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
+    @JoinTable(name = "transaction.useraccess_user_role_allocation", joinColumns = @JoinColumn(name = "user_id") , inverseJoinColumns = @JoinColumn(name = "role_id") )
     private Set<RoleMasterEntity> roleMasterEntityList;
 
     @Column(name = "counter")
@@ -78,6 +111,9 @@ public class UserMasterEntity implements Serializable {
 
     @Column(name = "user_photo")
     private String userPhoto;
+
+    @Transient
+    private String oldUserPhoto;
 
     @Column(name = "mobile_number")
     private String mobileNumber;
@@ -159,7 +195,6 @@ public class UserMasterEntity implements Serializable {
         this.name = name;
     }
 
-    
     public Set<RoleMasterEntity> getRoleMasterEntityList() {
         return roleMasterEntityList;
     }
@@ -341,6 +376,14 @@ public class UserMasterEntity implements Serializable {
         return "UserMasterEntity [userId=" + userId + ", name=" + name + ", username=" + username + ", password="
             + password + ", roleIds=" + roleIds + ", counter=" + counter + ", setWorkingDate=" + setWorkingDate
             + ", mobileNumber=" + mobileNumber + ", emailid=" + emailid + ", active=" + active + "]";
+    }
+
+    public String getOldUserPhoto() {
+        return oldUserPhoto;
+    }
+
+    public void setOldUserPhoto(String oldUserPhoto) {
+        this.oldUserPhoto = oldUserPhoto;
     }
 
 }

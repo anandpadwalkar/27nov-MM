@@ -17,6 +17,8 @@ public class CustomLoginUser implements Serializable {
 
     private int collegeId;
 
+    private int active;
+
     private Set<RoleMasterEntity> roleMasterEntityList;
 
     private List<Integer> allocatedRoleIds = new ArrayList<Integer>();
@@ -75,6 +77,14 @@ public class CustomLoginUser implements Serializable {
 
     public void setCollegeId(int collegeId) {
         this.collegeId = collegeId;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
     }
 
 }
